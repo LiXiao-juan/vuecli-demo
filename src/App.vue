@@ -1,35 +1,21 @@
 <template>
-  <div>
-    <!-- vue指令:   v-on事件绑定-->
-    <p>你要买商品的数量: {{ count }}</p>
-    <button v-on:click="count = count + 1">增加1</button>
-    <button v-on:click="addFn">增加1个</button>
-    <button v-on:click="addCountFn(5)">一次加5件</button>
-
-    <button @click="subFn">减少</button>
+  <div @click="fatherFn">
+    <!-- vue对事件进行了修饰符设置, 在事件后面.修饰符名即可使用更多的功能 -->
+    <button @click.stop="btn">.stop阻止事件冒泡</button>
+    <a href="http://www.baidu.com" @click.prevent="btn">.prevent阻止默认行为</a>
+    <button @click.once="btn">.once程序运行期间, 只触发一次事件处理函数</button>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-    count:0  
-    }
-  },
   methods: {
-    addFn() {
-      // this代表export default后面的组件对象(下属有data里return出来的属性)
-      this.count++
+    fatherFn(){
+      console.log("father被触发");
     },
-    addCountFn(num) {
-      this.count += num
-    },
-    subFn() {
-      this.count--
-    },
-  },
+    btn(){
+      console.log(1);
+    }
+  }
 }
 </script>
-
-<style></style>
